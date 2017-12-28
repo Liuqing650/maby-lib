@@ -34,10 +34,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ["env", 'react', 'es2015'],
-          "plugins": [
-            ["import", { "libraryName": "antd", "style": "css" }]
-          ]
+          presets: ["env", 'react', 'es2015']
         }
       }, {
         test: /\.css$/,
