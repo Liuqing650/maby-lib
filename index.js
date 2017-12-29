@@ -7,7 +7,7 @@ function camelCase(name) {
 }
 
 // 引入样式文件
-const req = require.context('./lib', true, /^\.\/[^_][\w-]+\/style\/index\.tsx?$/);
+const req = require.context('./lib', true, /^\.\/[^_][\w-]+\/style\/index\.js?$/);
 
 req.keys().forEach((mod) => {
   let v = req(mod);

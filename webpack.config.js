@@ -7,7 +7,7 @@ const env = process.env.WEBPACK_ENV;
 
 let libraryName = 'maby';
 
-let plugins = [], outputFile;
+let plugins = [], outputFile, devtool = 'source-map';
 console.log('✅ 当前是 %s 模式', env);
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
@@ -15,11 +15,15 @@ if (env === 'build') {
   outputFile = libraryName + '.min.js';
 } else {
   outputFile = libraryName + '.js';
+  devtool = 'inline-source-map';
 }
 
-module.exports = {
-  entry: __dirname + '/index.js',
-  devtool: 'source-map',
+let config = {
+  entry: {
+    maby: __dirname + '/index.js',
+    test: './test/index.js'
+  },
+  devtool: devtool,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: outputFile,
@@ -50,3 +54,9 @@ module.exports = {
   },
   plugins: plugins
 };
+if (env === 'dev') {
+  config.devServer = {
+    contentBase: './dist'
+  }
+}
+module.exports = config;
