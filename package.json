@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "一个基于React开发的组件库，用于测试和学习。",
   "main": "index.js",
+  "entry": {
+    "index": "./lib/index.js",
+    "another": "./src/another.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "WEBPACK_ENV=build webpack",
+    "build": "WEBPACK_ENV=prod webpack",
     "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch",
     "start": "WEBPACK_ENV=dev webpack-dev-server --progress --colors --watch"
   },

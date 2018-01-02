@@ -9,7 +9,7 @@ let libraryName = 'maby';
 
 let plugins = [], outputFile, devtool = 'source-map';
 console.log('✅ 当前是 %s 模式', env);
-if (env === 'build') {
+if (env === 'prod') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
   plugins.push(new CleanWebpackPlugin(['dist']));
   outputFile = libraryName + '.min.js';
@@ -20,8 +20,7 @@ if (env === 'build') {
 
 let config = {
   entry: {
-    maby: __dirname + '/index.js',
-    test: './test/index.js'
+    maby: __dirname + '/index.js'
   },
   devtool: devtool,
   output: {
