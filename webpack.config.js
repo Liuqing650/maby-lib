@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 const env = process.env.WEBPACK_ENV;
@@ -41,13 +40,17 @@ let config = {
         }
       }, {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract(['css-loader'])
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       }, {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ["css-loader", "less-loader"]
-        })
+        use: [
+          'style-loader',
+          'css-loader', 
+          'less-loader'
+        ]
       },
     ]
   },

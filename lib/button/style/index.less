@@ -1,0 +1,25 @@
+@import "../../style/theme/default";
+
+@prefix-btn: ~"@{maby-prefix}-btn";
+
+
+
+.@{prefix-btn} {
+  min-height: 0.3rem;
+  color: @primary-1;
+  &-primary {
+    background: @primary-color;
+
+  }
+}
+
+@keyframes buttonEffect {
+  to {
+    opacity: 0;
+    top: -6px;
+    left: -6px;
+    bottom: -6px;
+    right: -6px;
+    border-width: 6px;
+  }
+}
