@@ -1,4 +1,5 @@
 @import '../colors/color';
+@import '../colors/theme.less';
 
 // 定义前缀 maby
 @maby-prefix        : maby;
@@ -18,104 +19,11 @@
  * @theme-color        : 你选择的主题颜色;
  */
 @theme-color        : blue;
-.themMixin(@value) when(@value = purple) {
-	@primary-1              : @purple-1;
-	@primary-2              : @purple-2;
-	@primary-3              : @purple-3;
-	@primary-4              : @purple-4;
-	@primary-5              : @purple-5;
-	@primary-6              : @purple-6;
-	@primary-7              : @purple-7;
-	@primary-8              : @purple-8;
-	@primary-9              : @purple-9;
-	@primary-10             : @purple-10;
-}
-.themMixin(@value) when(@value = grey) {
-	@primary-1              : @grey-1;
-	@primary-2              : @grey-2;
-	@primary-3              : @grey-3;
-	@primary-4              : @grey-4;
-	@primary-5              : @grey-5;
-	@primary-6              : @grey-6;
-	@primary-7              : @grey-7;
-	@primary-8              : @grey-8;
-	@primary-9              : @grey-9;
-	@primary-10             : @grey-10;
-}
-.themMixin(@value) when(@value = lime) {
-	@primary-1              : @lime-1;
-	@primary-2              : @lime-2;
-	@primary-3              : @lime-3;
-	@primary-4              : @lime-4;
-	@primary-5              : @lime-5;
-	@primary-6              : @lime-6;
-	@primary-7              : @lime-7;
-	@primary-8              : @lime-8;
-	@primary-9              : @lime-9;
-	@primary-10             : @lime-10;
-}
-.themMixin(@value) when(@value = green) {
-	@primary-1              : @green-1;
-	@primary-2              : @green-2;
-	@primary-3              : @green-3;
-	@primary-4              : @green-4;
-	@primary-5              : @green-5;
-	@primary-6              : @green-6;
-	@primary-7              : @green-7;
-	@primary-8              : @green-8;
-	@primary-9              : @green-9;
-	@primary-10             : @green-10;
-}
-.themMixin(@value) when(@value = blue) {
-	@primary-1              : @blue-1;
-	@primary-2              : @blue-2;
-	@primary-3              : @blue-3;
-	@primary-4              : @blue-4;
-	@primary-5              : @blue-5;
-	@primary-6              : @blue-6;
-	@primary-7              : @blue-7;
-	@primary-8              : @blue-8;
-	@primary-9              : @blue-9;
-	@primary-10             : @blue-10;
-}
-.themMixin(@value) when(@value = red) {
-	@primary-1              : @red-1;
-	@primary-2              : @red-2;
-	@primary-3              : @red-3;
-	@primary-4              : @red-4;
-	@primary-5              : @red-5;
-	@primary-6              : @red-6;
-	@primary-7              : @red-7;
-	@primary-8              : @red-8;
-	@primary-9              : @red-9;
-	@primary-10             : @red-10;
-}
-.themMixin(@value) when(@value = yellow) {
-	@primary-1              : @yellow-1;
-	@primary-2              : @yellow-2;
-	@primary-3              : @yellow-3;
-	@primary-4              : @yellow-4;
-	@primary-5              : @yellow-5;
-	@primary-6              : @yellow-6;
-	@primary-7              : @yellow-7;
-	@primary-8              : @yellow-8;
-	@primary-9              : @yellow-9;
-	@primary-10             : @yellow-10;
-}
-.themMixin(@value) when(@value = pink) {
-	@primary-1              : @pink-1;
-	@primary-2              : @pink-2;
-	@primary-3              : @pink-3;
-	@primary-4              : @pink-4;
-	@primary-5              : @pink-5;
-	@primary-6              : @pink-6;
-	@primary-7              : @pink-7;
-	@primary-8              : @pink-8;
-	@primary-9              : @pink-9;
-	@primary-10             : @pink-10;
-}
-.themMixin(@theme-color);
 
+// 生成调色板
+.themeMixin(@theme-color);
+
+// 颜色管理员
 @primary-color            : @primary-6;
 @info-color               : @primary-6;
 @success-color            : @green-6;
@@ -125,3 +33,15 @@
 @warning-color            : @yellow-6;
 @normal-color             : @grey-5;
 
+// 基础配置
+@body-background        	: @primary-1;
+@font-family-no-number  	: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family            	: "Helvetica Neue For Number", @font-family-no-number;
+@code-family            	: Consolas, Menlo, Courier, monospace;
+@text-color								: @grey-10;
+
+
+@box-border-width					: 0.1rem;
+
+// 按钮
+@maby-btn									: @primary-color;
