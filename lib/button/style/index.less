@@ -2,14 +2,50 @@
 
 @prefix-btn: ~"@{maby-prefix}-btn";
 
-
-
+.btn-base(@height, @padding, @font-size) {
+  height: @height;
+  padding: @padding;
+  font-size: @font-size;
+}
+.btn-border(@border-color, @border-style : @border-style-base, @border-width : @border-width-base) {
+  border-width: @border-width;
+  border-style: @border-style;
+  border-color: @border-color;
+}
+.btn-type(@btn-color, @btn-bg) {
+  color: @btn-color;
+  background: @btn-bg;
+  text-align: center;
+}
 .@{prefix-btn} {
-  min-height: 0.3rem;
-  color: @primary-1;
+  font-weight: @btn-font-weight;
+  &-default {
+    .btn-base(@btn-height-base, @btn-padding-base, @btn-font-size-base);
+  }
+  &-large {
+    .btn-base(@btn-height-lg, @btn-padding-lg, @btn-font-size-lg);
+  }
+  &-small {
+    .btn-base(@btn-height-sm, @btn-padding-sm, @btn-font-size-sm);
+  }
+  &-default {
+    .btn-type(@btn-default-color, @btn-default-bg);
+    .btn-border(@btn-default-border);
+  }
   &-primary {
-    background: @primary-color;
-
+    .btn-type(@btn-primary-color, @btn-primary-bg);
+  }
+  &-danger {
+    .btn-type(@btn-danger-color, @btn-danger-bg);
+    .btn-border(@btn-danger-border);
+  }
+  &-disabled {
+    .btn-type(@btn-disable-color, @btn-disable-bg);
+    .btn-border(@btn-disable-border);
+  }
+  &-dashed {
+    .btn-type(@btn-default-color, @btn-default-bg);
+    .btn-border(@btn-primary-color, dashed);
   }
 }
 

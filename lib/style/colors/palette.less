@@ -1,3 +1,6 @@
+@import "tinyColor";
+
+// http://www.cnblogs.com/mabylove/p/8206264.html
 .paletteMixin() {
   @functions: ~`(function() {
     var hueStep = 2;
@@ -7,44 +10,58 @@
     var brightnessStep2 = 15;
     var lightColorCount = 5;
     var darkColorCount = 4;
-    var rgbO = {};
-    var hsvO = {};
-    
-    // 颜色解析RGB对象, hsv(100,100%,100%) | #fff | rbg(255,255,255)
-    var analysisRGB = (colors) {
-      var rgb = {r: 255, g: 255, b: 255};
-      if (!colors) {
-        return rgb;
+  
+    var getHue = function(hsv, i, isLight) {
+      var hue;
+      if (hsv.h >= 60 && hsv.h <= 240) {
+        hue = isLight ? hsv.h - hueStep * i : hsv.h + hueStep * i;
+      } else {
+        hue = isLight ? hsv.h + hueStep * i : hsv.h - hueStep * i;
       }
-      return {
-        r: red(colors),
-        g: green(colors),
-        b: blue(colors)
-      };
-    };
-    // 颜色解析为HSV对象, hsv(100,100%,100%) | #fff | rbg(255,255,255)
-    var analysisHSV = (colors) {
-      var hsv = {h: 255, s: 255, v: 255};
-      if (!colors) {
-        return hsv;
+      if (hue < 0) {
+        hue += 360;
+      } else if (hue >= 360) {
+        hue -= 360;
       }
-      return {
-        h: hsvhue(colors),
-        s: hsvsaturation(colors),
-        v: hsvvalue(colors)
-      };
+      return Math.round(hue);
     };
-    // RGB对象转为rgb颜色
-    var handleRGB = (rgbObj) {
-      return "rgb("  + rgbObj.r + ", " + rgbObj.g + ", " + rgbObj.b + ")";
+    var getSaturation = function(hsv, i, isLight) {
+      var saturation;
+      if (isLight) {
+        saturation = Math.round(hsv.s * 100) - saturationStep * i;
+      } else if (i == darkColorCount) {
+        saturation = Math.round(hsv.s * 100) + saturationStep;
+      } else {
+        saturation = Math.round(hsv.s * 100) + saturationStep2 * i;
+      }
+      if (saturation > 100) {
+        saturation = 100;
+      }
+      if (isLight && i === lightColorCount && saturation > 10) {
+        saturation = 10;
+      }
+      if (saturation < 6) {
+        saturation = 6;
+      }
+      return Math.round(saturation);
     };
-    // HSV对象转为hsv颜色
-    var handleHSV = (hsvObj) {
-      return "hsv("  + hsvObj.h + ", " + hsvObj.s + "%, " + hsvObj.v + "%)";
+    var getValue = function(hsv, i, isLight) {
+      if (isLight) {
+        return Math.round(hsv.v * 100) + brightnessStep1 * i;
+      }
+      return Math.round(hsv.v * 100) - brightnessStep2 * i;
     };
 
     this.palette = function(color, index) {
-      rgbO = analysisRGB(color);
+      var isLight = index <= 6;
+      var hsv = tinycolor(color).toHsv();
+      var i = isLight ? lightColorCount + 1 - index : index - lightColorCount - 1;
+      return tinycolor({
+        h: getHue(hsv, i, isLight),
+        s: getSaturation(hsv, i, isLight),
+        v: getValue(hsv, i, isLight),
+      }).toHexString();
     }
   })()`;
 }
+.paletteMixin();

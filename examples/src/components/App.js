@@ -6,7 +6,9 @@ export default function App() {
   return (
     <div>
       <h2>测试maby-cli</h2>
-      <Button>test235</Button>
+      <Button
+        type={"primary"}
+       >test235</Button>
     </div>
   );
 }
