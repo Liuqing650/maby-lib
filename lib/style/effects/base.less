@@ -1,0 +1,38 @@
+@import '../theme/default';
+
+// 过渡
+.transition(@attr: all, @time: 0.3s, @timing: @ease-in-out, @delay: 0) {
+  transition-property: @attr;
+  transition-duration: @time;
+  transition-timing-function: @timing;
+  transition-delay: @delay;
+  /* Firefox 4 */
+  -moz-transition-property: @attr;
+  -moz-transition-duration: @time;
+  -moz-transition-timing-function: @timing;
+  -moz-transition-delay: @delay;
+  /* Safari 和 Chrome */
+  -webkit-transition-property: @attr;
+  -webkit-transition-duration: @time;
+  -webkit-transition-timing-function: @timing;
+  -webkit-transition-delay: @delay;
+  /* Opera */
+  -o-transition-property: @attr;
+  -o-transition-duration: @time;
+  -o-transition-timing-function: @timing;
+  -o-transition-delay: @delay;
+}
+
+// 旋转
+.transform(@transform: none) {
+  transform: @transform;
+  -ms-transform: @transform; 	/* IE 9 */
+  -moz-transform: @transform; 	/* Firefox */
+  -webkit-transform: @transform; /* Safari 和 Chrome */
+  -o-transform: @transform; 	/* Opera */
+}
+
+// 动画
+.animation() {
+
+}

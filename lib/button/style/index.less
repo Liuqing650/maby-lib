@@ -1,4 +1,6 @@
 @import "../../style/theme/default";
+@import "../../style/mixins/index";
+@import "../../style/effects/index";
 
 @prefix-btn: ~"@{maby-prefix}-btn";
 
@@ -19,25 +21,53 @@
 }
 .@{prefix-btn} {
   font-weight: @btn-font-weight;
-  &-default {
-    .btn-base(@btn-height-base, @btn-padding-base, @btn-font-size-base);
-  }
-  &-large {
-    .btn-base(@btn-height-lg, @btn-padding-lg, @btn-font-size-lg);
-  }
-  &-small {
-    .btn-base(@btn-height-sm, @btn-padding-sm, @btn-font-size-sm);
+  .outline();
+  .transform();
+  &-size {
+    &-default {
+      .btn-base(@btn-height-base, @btn-padding-base, @btn-font-size-base);
+    }
+    &-large {
+      .btn-base(@btn-height-lg, @btn-padding-lg, @btn-font-size-lg);
+    }
+    &-small {
+      .btn-base(@btn-height-sm, @btn-padding-sm, @btn-font-size-sm);
+    }
   }
   &-default {
     .btn-type(@btn-default-color, @btn-default-bg);
     .btn-border(@btn-default-border);
+    .transition(all, 0.3s);
+    &:hover {
+      .btn-type(@btn-primary-color, @btn-default-bg);
+      .btn-border(@btn-primary-bg);
+      .transition(all, 0.3s);
+    }
   }
   &-primary {
     .btn-type(@btn-primary-color, @btn-primary-bg);
+    .btn-border(@btn-primary-bg);
+    .transition(all, 0.3s);
+    &:hover {
+      .btn-type(@btn-primary-bg, @btn-primary-color);
+      .btn-border(@btn-primary-bg);
+      .transition(all, 0.3s);
+    };
+    &:active {
+      .btn-type(@btn-primary-bg, @btn-primary-color);
+      .btn-border(@btn-primary-bg);
+      .transition(all, 0.1s);
+    }
   }
   &-danger {
     .btn-type(@btn-danger-color, @btn-danger-bg);
     .btn-border(@btn-danger-border);
+    .transition(all, 0.3s);
+    &:hover {
+      .btn-type(@btn-danger-bg, @btn-danger-color);
+      .btn-border(@btn-danger-color);
+      .transition(all, 0.3s);
+    }
   }
   &-disabled {
     .btn-type(@btn-disable-color, @btn-disable-bg);
@@ -46,6 +76,12 @@
   &-dashed {
     .btn-type(@btn-default-color, @btn-default-bg);
     .btn-border(@btn-primary-color, dashed);
+    .transition(all, 0.3s);
+    &:hover {
+      .btn-type(@btn-primary-color, @btn-primary-bg);
+      .btn-border(@btn-primary-color);
+      .transition(all, 0.3s);
+    }
   }
 }
 
